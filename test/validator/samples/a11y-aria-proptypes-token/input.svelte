@@ -1,5 +1,5 @@
 <div aria-sort="" />
-<div aria-sort="descnding" />
+<div aria-sort="descending" />
 <div aria-sort />
 <div aria-sort={true} />
 <div aria-sort={"false"} />
