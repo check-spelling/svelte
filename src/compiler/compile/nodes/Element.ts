@@ -23,7 +23,7 @@ import { string_literal } from '../utils/stringify';
 import { Literal } from 'estree';
 import compiler_warnings from '../compiler_warnings';
 import compiler_errors from '../compiler_errors';
-import { ARIARoleDefintionKey, roles, aria, ARIAPropertyDefinition, ARIAProperty } from 'aria-query';
+import { ARIARoleDefinitionKey, roles, aria, ARIAPropertyDefinition, ARIAProperty } from 'aria-query';
 import { is_interactive_element, is_non_interactive_roles, is_presentation_role, is_interactive_roles, is_hidden_from_screen_reader, is_semantic_role_element } from '../utils/a11y';
 
 const aria_attributes = 'activedescendant atomic autocomplete busy checked colcount colindex colspan controls current describedby description details disabled dropeffect errormessage expanded flowto grabbed haspopup hidden invalid keyshortcuts label labelledby level live modal multiline multiselectable orientation owns placeholder posinset pressed readonly relevant required roledescription rowcount rowindex rowspan selected setsize sort valuemax valuemin valuenow valuetext'.split(' ');
@@ -492,7 +492,7 @@ export default class Element extends Node {
 					component.warn(attribute, compiler_warnings.a11y_misplaced_role(this.name));
 				}
 
-				const value = attribute.get_static_value() as ARIARoleDefintionKey;
+				const value = attribute.get_static_value() as ARIARoleDefinitionKey;
 
 				if (value && aria_role_abstract_set.has(value)) {
 					component.warn(attribute, compiler_warnings.a11y_no_abstract_role(value));
@@ -564,7 +564,7 @@ export default class Element extends Node {
 		// click-events-have-key-events
 		if (handlers_map.has('click')) {
 			const role = attribute_map.get('role');
-			const is_non_presentation_role = role?.is_static && !is_presentation_role(role.get_static_value() as ARIARoleDefintionKey);
+			const is_non_presentation_role = role?.is_static && !is_presentation_role(role.get_static_value() as ARIARoleDefinitionKey);
 
 			if (
 				!is_hidden_from_screen_reader(this.name, attribute_map) &&
@@ -587,7 +587,7 @@ export default class Element extends Node {
 		}
 
 		// no-noninteractive-tabindex
-		if (!is_interactive_element(this.name, attribute_map) && !is_interactive_roles(attribute_map.get('role')?.get_static_value() as ARIARoleDefintionKey)) {
+		if (!is_interactive_element(this.name, attribute_map) && !is_interactive_roles(attribute_map.get('role')?.get_static_value() as ARIARoleDefinitionKey)) {
 			const tab_index = attribute_map.get('tabindex');
 			if (tab_index && (!tab_index.is_static || Number(tab_index.get_static_value()) >= 0)) {
 				component.warn(this, compiler_warnings.a11y_no_noninteractive_tabindex);

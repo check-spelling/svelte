@@ -1,5 +1,5 @@
 import {
-	ARIARoleDefintionKey,
+	ARIARoleDefinitionKey,
 	roles as roles_map,
 	elementRoles,
 	ARIARoleRelationConcept
@@ -47,17 +47,17 @@ const interactive_roles = new Set(
 		)
 );
 
-export function is_non_interactive_roles(role: ARIARoleDefintionKey) {
+export function is_non_interactive_roles(role: ARIARoleDefinitionKey) {
 	return non_interactive_roles.has(role);
 }
 
-export function is_interactive_roles(role: ARIARoleDefintionKey) {
+export function is_interactive_roles(role: ARIARoleDefinitionKey) {
 	return interactive_roles.has(role);
 }
 
 const presentation_roles = new Set(['presentation', 'none']);
 
-export function is_presentation_role(role: ARIARoleDefintionKey) {
+export function is_presentation_role(role: ARIARoleDefinitionKey) {
 	return presentation_roles.has(role);
 }
 
@@ -156,7 +156,7 @@ export function is_interactive_element(
 	return false;
 }
 
-export function is_semantic_role_element(role: ARIARoleDefintionKey, tag_name: string, attribute_map: Map<string, Attribute>) {
+export function is_semantic_role_element(role: ARIARoleDefinitionKey, tag_name: string, attribute_map: Map<string, Attribute>) {
 	for (const [schema, ax_object] of elementAXObjects.entries()) {
 		if (schema.name === tag_name && (!schema.attributes || schema.attributes.every(
 			(attr) => attribute_map.has(attr.name) && attribute_map.get(attr.name).get_static_value() === attr.value
